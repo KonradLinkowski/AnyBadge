@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const port = process.env.port || 2137
+const port = process.env.PORT || 2137
 
 const { validate, ValidationError: RequestValidationError, Joi } = require('express-validation')
 const { makeBadge } = require('badge-maker')
