@@ -19,7 +19,11 @@ const querySchema = {
   }),
 }
 
-app.get('/', validate(querySchema, {}, {}), (req, res) => {
+app.get('/', (req, res) => {
+  res.redirect('https://github.com/KonradLinkowski/AnyBadge')
+})
+
+app.get('/badge', validate(querySchema, {}, {}), (req, res) => {
   const svg = makeBadge(req.query)
   res.send(svg)
 })
