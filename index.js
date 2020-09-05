@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 
 app.get('/badge', validate(querySchema, {}, {}), (req, res) => {
   const svg = makeBadge(req.query)
+  res.setHeader('Content-Type', 'image/svg+xml')
   res.send(svg)
 })
 
