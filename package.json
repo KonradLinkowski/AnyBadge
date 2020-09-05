@@ -1,0 +1,21 @@
+{
+  "name": "any-badge",
+  "version": "1.0.0",
+  "description": "User content badge provider",
+  "main": "index.js",
+  "repository": "https://github.com/KonradLinkowski/AnyBadge",
+  "author": "Konrad Linkowski",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "badge-maker": "^3.2.0",
+    "express": "^4.17.1",
+    "express-validation": "^3.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
