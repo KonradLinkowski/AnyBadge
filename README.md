@@ -24,3 +24,4 @@ params | badge
 `message=test&label=cool` | ![](https://anybadge.herokuapp.com/badge?message=test&label=cool)
 `message=test&label=cool&labelColor=c0c` | ![](https://anybadge.herokuapp.com/badge?message=test&label=cool&labelColor=c0c)
 `message=test&label=lol&style=flat` | ![](https://anybadge.herokuapp.com/badge?message=test&label=lol&style=social)
+`labelColor=c00&color=0c0&label=test%20wiadomości%20push&message=eśąźć` | ![](https://anybadge.herokuapp.com/badge?labelColor=c00&color=0c0&label=test%20wiadomości%20push&message=eśąźć)
