@@ -6,6 +6,14 @@ const port = process.env.PORT || 2137
 const { validate, ValidationError: RequestValidationError, Joi } = require('express-validation')
 const { makeBadge } = require('badge-maker')
 
+const stripProperties = (original, allowedProperties) =>
+  Object.entries(original).reduce((obj, [property, value]) => {
+    if (allowedProperties.includes(property)) {
+      obj[property] = value
+    }
+    return obj
+  }, {})
+
 // this regex is not perfect but probably enough
 const colorRegex = /((?:[0-9a-f]{2}){2,4}$|([0-9a-f]{3}$)|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\)$|brightgreen$|green$|yellow$|yellowgreen$|orange$|red$|blue$|gr[ae]y$|lightgr[ae]y$|success$|important$|critical$|informational$|innactive$)/i
 
@@ -16,7 +24,7 @@ const querySchema = {
     labelColor: Joi.string().regex(colorRegex),
     color: Joi.string().regex(colorRegex),
     style: Joi.string().valid('plastic', 'flat', 'flat-square', 'for-the-badge', 'social')
-  }),
+  }).unknown(true)
 }
 
 app.get('/', (req, res) => {
@@ -24,7 +32,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/badge', validate(querySchema, {}, {}), (req, res) => {
-  const svg = makeBadge(req.query)
+  const badgeData = stripProperties(req.query, [...querySchema.query._ids._byKey.keys()])
+  const svg = makeBadge(badgeData)
   res.setHeader('Content-Type', 'image/svg+xml')
   res.send(svg)
 })
